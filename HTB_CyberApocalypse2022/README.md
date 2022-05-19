@@ -23,4 +23,5 @@ URL - https://www.hackthebox.com/events/cyber-apocalypse-2022
 </p>
 
 
-![image](https://user-images.githubusercontent.com/85706972/169384067-7af1d184-2cac-444e-935a-6cdef925ffec.png)
+ ![image](https://user-images.githubusercontent.com/85706972/169384526-a91a8e0d-e458-43d4-ba93-3d2384d498b4.png)
+

@@ -171,3 +171,82 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 <li>
   <p>It worked perfect and congrats box is pwned as we have gained root access on the box</p>
 </li>
+
+# Wait there is more ...
+
+<li>
+  <p>Remember that SMB port we found open? Well what if that's another way to gain foothold on the machine ?</p>
+</li>
+
+## Exploiting SMB ##
+
+<li>
+  <p>First we can perform nmap script scan to check for known vulnerabilties from nmap database</p>
+</li>
+
+```js
+nmap -p 139 -script vuln 192.168.14.131 | tee smb_scan.txt
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-06-10 15:39 EDT
+Pre-scan script results:
+| broadcast-avahi-dos: 
+|   Discovered hosts:
+|     224.0.0.251
+|   After NULL UDP avahi packet DoS (CVE-2011-1002).
+|_  Hosts are all up (not vulnerable).
+Nmap scan report for kioptrix.vuln (192.168.14.131)
+Host is up (0.00043s latency).
+
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+MAC Address: 00:0C:29:4B:15:28 (VMware)
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [14]
+| smb-vuln-cve2009-3103: 
+|   VULNERABLE:
+|   SMBv2 exploit (CVE-2009-3103, Microsoft Security Advisory 975497)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2009-3103
+|           Array index error in the SMBv2 protocol implementation in srv2.sys in Microsoft Windows Vista Gold, SP1, and SP2,
+|           Windows Server 2008 Gold and SP2, and Windows 7 RC allows remote attackers to execute arbitrary code or cause a
+|           denial of service (system crash) via an & (ampersand) character in a Process ID High header field in a NEGOTIATE
+|           PROTOCOL REQUEST packet, which triggers an attempted dereference of an out-of-bounds memory location,
+|           aka "SMBv2 Negotiation Vulnerability."
+|           
+|     Disclosure date: 2009-09-08
+|     References:
+|       http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [14]
+```
+
+<li>
+  <p>Nmap scan returned SMBv2 exploit CVE-2009-3103, but this don't look like will give us RCE on the box, what we can do next is check SMB version, I'm going to use auxiliry scanner from metasploit  
+  </p> 
+</li>
+
+```js
+auxiliary(scanner/smb/smb_version) > run
+
+[*] 192.168.14.131:139    - SMB Detected (versions:) (preferred dialect:) (signatures:optional)
+[*] 192.168.14.131:139    -   Host could not be identified: Unix (Samba 2.2.1a)
+[*] 192.168.14.131:       - Scanned 1 of 1 hosts (100% complete)
+```
+<li>
+  <p>Now we know the SMB version Samba 2.2.1a, which makes it more easy for us to search for known exploits using built-in tool <strong>searchsploit</strong></p>
+</li>
+
+![image](https://user-images.githubusercontent.com/85706972/173141765-6cd81e0f-704c-4519-85a6-80c48474d564.png)
+
+<li>
+  <p>From the output it looks like we have 4 options here, but the one that works in our case is going to be heapoverflow which is ready script and will perform brute force on it and in the end it returns us with root access on the box</p>
+  </li>
+  
+  
+  ![image](https://user-images.githubusercontent.com/85706972/173143610-15cd16b1-37c5-41ea-8367-dafd6377e57e.png)
+
+
+# Ending
+
+<p> This is very old box, I know, it's not really relavent to the latest ongoing stuff, but it's good to practice some tools and enumeration process as it's key aspect as Pentester\Ethical Hacker.

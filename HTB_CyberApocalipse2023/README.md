@@ -22,11 +22,11 @@ Ready for a mission through space and time? This is your chance to join the bigg
 [Initialise Connection](Pwn/Initialise_Connection.md)
 
 ## Crypto
-[Ancient Encodings](Crypto/Ancient_encodings.md)
+[Ancient Encodings](Crypto/Ancient_encodings.md)\
 [Small Steps](Crypto/Small_Steps.md)
 
 ## Misc
-[Persistence](Misc/Persistence.md)
+[Persistence](Misc/Persistence.md)\
 [Remote computation](Misc/Remote_computation.md)
 
 

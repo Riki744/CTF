@@ -20,3 +20,9 @@ Ready for a mission through space and time? This is your chance to join the bigg
 ## Pwn
 [Getting Started](Pwn/Getting_Started.md)\
 [Initialise Connection](Pwn/Initialise_Connection.md)
+
+## Crypto
+
+[Ancient Encodings](Crypto/Ancient_encodings.md)
+
+

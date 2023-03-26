@@ -63,4 +63,13 @@ It looks like there is processing of words , so going for words reference gives 
 
 Flag - `HTB{d1v1ng_1nt0_th3_d4tab4nk5}`
 
+# Shortcut solve
+
+Also all thing can be skipped by just simply checking strings on the file that was provided
+
+![image](https://user-images.githubusercontent.com/85706972/227799318-19fd78a9-5feb-432b-8fc5-5e94bd491b1f.png)
+
+
+
+
 

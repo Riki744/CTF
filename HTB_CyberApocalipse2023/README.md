@@ -29,6 +29,11 @@ Ready for a mission through space and time? This is your chance to join the bigg
 [Persistence](Misc/Persistence.md)\
 [Remote computation](Misc/Remote_computation.md)
 
+## Reversing
+[Needle in a Haystack](Reversing/Needle_ina_Haystack.md)\
+[Shattered Tablet](Reversing/Shattered_Tablet.md)
+
+
 
 
 
